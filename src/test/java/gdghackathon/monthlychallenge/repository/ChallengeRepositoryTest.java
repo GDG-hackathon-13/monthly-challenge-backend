@@ -29,19 +29,19 @@ class ChallengeRepositoryTest {
     void insert_Challenge_Sample() {
         IntStream.rangeClosed(1, 8).forEach(i -> { // Challenge
             Challenge challenge = Challenge.builder()
-                    .missionCount(0)
+                    .mission_count(0)
                     .name("Challenge " + i)
-                    .createDate(LocalDateTime.now())
+                    .create_date(LocalDateTime.now())
                     .build();
             challengeRepository.save(challenge);
 
             IntStream.rangeClosed(1, 30).forEach(j -> { // Mission
                 Mission mission = Mission.builder()
-                        .missionCheck(false)
+                        .mission_check(false)
                         .name("Mission " + j)
                         .memo("Memo " + j + "...")
                         .image("image url ... " + j + ".jpg")
-                        .thumbnailImage("thumbnail url ... " + j + ".jpg")
+                        .thumbnail_image("thumbnail url ... " + j + ".jpg")
                         .challenge(challenge)
                         .build();
 
