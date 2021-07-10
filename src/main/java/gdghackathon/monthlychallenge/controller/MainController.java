@@ -1,25 +1,23 @@
 package gdghackathon.monthlychallenge.controller;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import gdghackathon.monthlychallenge.dto.CreateChallengeDTO;
+import gdghackathon.monthlychallenge.dto.CreateMissionDTO;
 import gdghackathon.monthlychallenge.dto.CreatedChallengeDTO;
 import gdghackathon.monthlychallenge.dto.MissionResponseDto;
 import gdghackathon.monthlychallenge.dto.View;
 import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
 import gdghackathon.monthlychallenge.entity.Challenge;
-import gdghackathon.monthlychallenge.entity.Mission;
-import gdghackathon.monthlychallenge.repository.ChallengeRepository;
 import gdghackathon.monthlychallenge.service.ChallengeService;
 import gdghackathon.monthlychallenge.service.MissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -29,7 +27,7 @@ public class MainController {
     private final MissionService missionService;
 
     @Autowired
-    MainController(ChallengeService challengeService, MissionService missionService){
+    public MainController(ChallengeService challengeService, MissionService missionService){
         this.challengeService = challengeService;
         this.missionService = missionService;
     }
@@ -65,13 +63,23 @@ public class MainController {
     }
 
     @GetMapping("/{challengeId}/mission")  //미션 조회
-    public ResponseEntity<List<MissionResponseDto>> getMissions(@PathVariable Long challengeId){
+    public ResponseEntity<List<MissionResponseDto>> getMissions(@PathVariable Long challengeId) {
         List<MissionResponseDto> missionResponse = missionService.getMissions(challengeId);
         return ResponseEntity.status(HttpStatus.OK).body(missionResponse);
     }
 
-    @PostMapping("/{challengeId}/mission/{missionId}") //미션 인증 requestBody
-    public ResponseEntity<Void> completeMission(@PathVariable Long challengeId, @PathVariable Long missionId){//requestBody
+    @PostMapping(path = "/{challengeId}/mission/{missionId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> completeMission(
+            @ModelAttribute CreateMissionDTO createMissionDTO,
+            @RequestPart("file") MultipartFile multipartFile,
+            @PathVariable Long challengeId,
+            @PathVariable Long missionId) {
+        try {
+            missionService.completeMission(createMissionDTO, multipartFile, challengeId, missionId);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 }

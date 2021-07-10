@@ -9,4 +9,6 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
 
     List<Mission> findAllByChallengeId(Long id);
 
+    Mission findByChallengeIdAndId(Long challengeId, Long Id);
+
 }
