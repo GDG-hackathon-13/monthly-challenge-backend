@@ -27,29 +27,33 @@ public class ChallengeService {
 
     public Long createChallenge(CreateChallengeDTO dto){
         Challenge challenge = new Challenge(0, dto.getName(), LocalDateTime.now());
-        challengeRepository.save(challenge);
         List<Mission> missions = dto.getMission();
         if (missions.size()!=30)
             throw new IllegalArgumentException("size of mission array is not 30.");
-        for (Mission m : missions){
-            m.setChallenge(challenge);
-            missionRepository.save(m);
+        else {
+            challengeRepository.save(challenge);
+            for (Mission m : missions) {
+                m.setChallenge(challenge);
+                missionRepository.save(m);
+            }
+            return challenge.getId();
         }
-        return challenge.getId();
     }
 
     public void deleteChallenge(Long id){
         Optional<Challenge> challengeToDelete = challengeRepository.findById(id);
         if (challengeToDelete.isEmpty())
             throw new EntityNotFoundException("not found challenge to delete. check id of challenge.");
-        challengeRepository.delete(challengeToDelete.get());
+        else
+            challengeRepository.delete(challengeToDelete.get());
     }
 
     public Challenge getChallenge(Long id){
         Optional<Challenge> challengeToGet = challengeRepository.findById(id);
         if (challengeToGet.isEmpty())
             throw new EntityNotFoundException("not found challenge to get. check id of challenge.");
-        return challengeToGet.get();
+        else
+            return challengeToGet.get();
     }
 
     public List<Challenge> getChallenges(){

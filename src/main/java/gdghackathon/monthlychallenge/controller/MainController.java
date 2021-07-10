@@ -1,6 +1,13 @@
 package gdghackathon.monthlychallenge.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import gdghackathon.monthlychallenge.dto.CreateChallengeDTO;
+import gdghackathon.monthlychallenge.dto.CreatedChallengeDTO;
+import gdghackathon.monthlychallenge.dto.View;
 import gdghackathon.monthlychallenge.entity.Challenge;
 import gdghackathon.monthlychallenge.entity.Mission;
 import gdghackathon.monthlychallenge.repository.ChallengeRepository;
@@ -26,9 +33,10 @@ public class MainController {
     }
 
     @PostMapping("") //챌린지 생성 requestBody
-    public ResponseEntity<Long> createChallenge(@RequestBody CreateChallengeDTO createChallengeDTO){
+    public ResponseEntity<CreatedChallengeDTO> createChallenge(@RequestBody CreateChallengeDTO createChallengeDTO){
         Long createdId = challengeService.createChallenge(createChallengeDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(createdId);
+        CreatedChallengeDTO createdChallengeDTO = new CreatedChallengeDTO(createdId);
+        return ResponseEntity.status(HttpStatus.OK).body(createdChallengeDTO);
     }
 
     @DeleteMapping("/{id}") //챌린지 삭제
@@ -43,6 +51,7 @@ public class MainController {
         return ResponseEntity.status(HttpStatus.OK).body(challenge);
     }
 
+    @JsonView(View.Summary.class)
     @GetMapping("")    //챌린지 목록 조회
     public ResponseEntity<List<Challenge>> getChallenges(){
         return ResponseEntity.status(HttpStatus.OK).body(challengeService.getChallenges());
