@@ -18,5 +18,11 @@ public class ExceptionHandlerAdvice extends ResponseEntityExceptionHandler {
         errorResponse.setErrorMessage(e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
+    @ExceptionHandler(value = IllegalArgumentException.class) //EntityNotFound 예외처리
+    protected ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException e){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setErrorMessage(e.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
 
 }

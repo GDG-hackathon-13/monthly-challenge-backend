@@ -1,5 +1,8 @@
 package gdghackathon.monthlychallenge.entity;
 
+
+import com.fasterxml.jackson.annotation.JsonView;
+import gdghackathon.monthlychallenge.dto.View;
 import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,13 +22,18 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Challenge {
+    @JsonView(View.Summary.class)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonView(View.Summary.class)
     @NonNull
     private Integer mission_count;
+
+    @JsonView(View.Summary.class)
     @NonNull
     private String name;
+    @JsonView(View.Summary.class)
     @NonNull
     private LocalDateTime create_date;
 
