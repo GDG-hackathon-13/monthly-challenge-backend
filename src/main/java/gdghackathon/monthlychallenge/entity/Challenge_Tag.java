@@ -1,6 +1,7 @@
 package gdghackathon.monthlychallenge.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @RequiredArgsConstructor
+@NoArgsConstructor
 @IdClass(Challenge_Tag_PK.class)
 public class Challenge_Tag {
     @Id

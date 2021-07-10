@@ -2,6 +2,9 @@ package gdghackathon.monthlychallenge.controller;
 
 import gdghackathon.monthlychallenge.entity.Challenge;
 import gdghackathon.monthlychallenge.entity.Mission;
+import gdghackathon.monthlychallenge.service.ChallengeService;
+import gdghackathon.monthlychallenge.service.MissionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,8 +13,14 @@ import java.util.List;
 
 @RestController
 public class MainController {
+    @Autowired
+    ChallengeService challengeService;
+    @Autowired
+    MissionService missionService;
+
     @PostMapping("challenge") //챌린지 생성 requestBody
     public ResponseEntity<Long> createChallenge(){
+
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 

@@ -1,14 +1,14 @@
 package gdghackathon.monthlychallenge.entity;
 
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Mission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Mission {
 
     private String memo;
     private String image;
-
+    private String thumbnailImage;
 
     @ManyToOne
     @JoinColumn(name = "challenge_id")
