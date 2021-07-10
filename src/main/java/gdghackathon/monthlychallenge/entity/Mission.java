@@ -14,13 +14,13 @@ public class Mission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
-    private Boolean missionCheck;
+    private Boolean mission_check;
     @NonNull
     private String name;
 
     private String memo;
     private String image;
-    private String thumbnailImage;
+    private String thumbnail_image;
 
     @ManyToOne
     @JoinColumn(name = "challenge_id")
