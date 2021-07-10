@@ -1,5 +1,6 @@
 package gdghackathon.monthlychallenge.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Mission {
     private String image;
     private String thumbnail_image;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "challenge_id")
     private Challenge challenge;
