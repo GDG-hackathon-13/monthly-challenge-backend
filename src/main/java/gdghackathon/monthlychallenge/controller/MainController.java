@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 import gdghackathon.monthlychallenge.dto.CreateChallengeDTO;
 import gdghackathon.monthlychallenge.dto.CreatedChallengeDTO;
 import gdghackathon.monthlychallenge.dto.View;
+import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
 import gdghackathon.monthlychallenge.entity.Challenge;
 import gdghackathon.monthlychallenge.entity.Mission;
 import gdghackathon.monthlychallenge.repository.ChallengeRepository;
@@ -23,8 +24,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/challenge")
 public class MainController {
-    private ChallengeService challengeService;
-    private MissionService missionService;
+    private final ChallengeService challengeService;
+    private final MissionService missionService;
 
     @Autowired
     MainController(ChallengeService challengeService, MissionService missionService){
@@ -58,8 +59,10 @@ public class MainController {
     }
 
     @GetMapping("/samples")    //샘플 챌린지 조회
-    public ResponseEntity<List<Challenge>> getSamples(){
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+    public ResponseEntity<List<ChallengeResponseDto>> getSamples() {
+        final List<ChallengeResponseDto> challengeResponse = challengeService.getSampleChallenges();
+
+        return ResponseEntity.status(HttpStatus.OK).body(challengeResponse);
     }
 
     @GetMapping("/{challengeId}/mission")  //미션 조회
