@@ -1,5 +1,6 @@
 package gdghackathon.monthlychallenge.controller;
 
+import gdghackathon.monthlychallenge.dto.CreateChallengeDTO;
 import gdghackathon.monthlychallenge.entity.Challenge;
 import gdghackathon.monthlychallenge.entity.Mission;
 import gdghackathon.monthlychallenge.repository.ChallengeRepository;
@@ -25,24 +26,26 @@ public class MainController {
     }
 
     @PostMapping("") //챌린지 생성 requestBody
-    public ResponseEntity<Long> createChallenge(){
-
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+    public ResponseEntity<Long> createChallenge(@RequestBody CreateChallengeDTO createChallengeDTO){
+        Long createdId = challengeService.createChallenge(createChallengeDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(createdId);
     }
 
     @DeleteMapping("/{id}") //챌린지 삭제
     public ResponseEntity<Void> deleteChallenge(@PathVariable Long id){
+        challengeService.deleteChallenge(id);
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     @GetMapping("/{id}")   //특정 챌린지 조회
     public ResponseEntity<Challenge> getChallenge(@PathVariable Long id){
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        Challenge challenge = challengeService.getChallenge(id);
+        return ResponseEntity.status(HttpStatus.OK).body(challenge);
     }
 
     @GetMapping("")    //챌린지 목록 조회
     public ResponseEntity<List<Challenge>> getChallenges(){
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(challengeService.getChallenges());
     }
 
     @GetMapping("/samples")    //샘플 챌린지 조회

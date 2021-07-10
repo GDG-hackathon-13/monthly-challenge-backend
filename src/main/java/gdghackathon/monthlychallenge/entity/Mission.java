@@ -20,7 +20,7 @@ public class Mission {
 
     private String memo;
     private String image;
-    private String thumbnailImage;
+    private String thumbnail_image;
 
     @ManyToOne
     @JoinColumn(name = "challenge_id")
