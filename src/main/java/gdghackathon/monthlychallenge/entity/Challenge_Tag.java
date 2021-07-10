@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @RequiredArgsConstructor
-@NoArgsConstructor
 @IdClass(Challenge_Tag_PK.class)
 public class Challenge_Tag {
     @Id
