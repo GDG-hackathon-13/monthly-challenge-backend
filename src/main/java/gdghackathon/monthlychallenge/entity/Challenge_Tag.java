@@ -1,5 +1,6 @@
 package gdghackathon.monthlychallenge.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @IdClass(Challenge_Tag_PK.class)
 public class Challenge_Tag {
+    @JsonIgnore
     @Id
     @ManyToOne
     @JoinColumn(name = "challenge_id")
