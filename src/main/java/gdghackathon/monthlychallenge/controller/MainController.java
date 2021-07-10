@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import gdghackathon.monthlychallenge.dto.CreateChallengeDTO;
 import gdghackathon.monthlychallenge.dto.CreatedChallengeDTO;
+import gdghackathon.monthlychallenge.dto.MissionResponseDto;
 import gdghackathon.monthlychallenge.dto.View;
 import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
 import gdghackathon.monthlychallenge.entity.Challenge;
@@ -60,14 +61,13 @@ public class MainController {
 
     @GetMapping("/samples")    //샘플 챌린지 조회
     public ResponseEntity<List<ChallengeResponseDto>> getSamples() {
-        final List<ChallengeResponseDto> challengeResponse = challengeService.getSampleChallenges();
-
-        return ResponseEntity.status(HttpStatus.OK).body(challengeResponse);
+        return ResponseEntity.status(HttpStatus.OK).body(challengeService.getSampleChallenges());
     }
 
     @GetMapping("/{challengeId}/mission")  //미션 조회
-    public ResponseEntity<List<Mission>> getMissions(@PathVariable Long challengeId){
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+    public ResponseEntity<List<MissionResponseDto>> getMissions(@PathVariable Long challengeId){
+        List<MissionResponseDto> missionResponse = missionService.getMissions(challengeId);
+        return ResponseEntity.status(HttpStatus.OK).body(missionResponse);
     }
 
     @PostMapping("/{challengeId}/mission/{missionId}") //미션 인증 requestBody

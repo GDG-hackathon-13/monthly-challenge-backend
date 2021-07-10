@@ -64,7 +64,6 @@ public class ChallengeService {
   
     public List<ChallengeResponseDto> getSampleChallenges() {
         final List<Challenge> challengeList = challengeRepository.findTop8ByOrderByIdAsc();
-
         return challengeList.stream()
                 .map(Challenge::entityToDto)
                 .collect(Collectors.toList());
