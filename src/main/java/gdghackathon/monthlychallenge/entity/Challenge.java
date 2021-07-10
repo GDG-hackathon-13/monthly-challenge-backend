@@ -23,11 +23,11 @@ public class Challenge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NonNull
-    private Integer missionCount;
+    private Integer mission_count;
     @NonNull
     private String name;
     @NonNull
-    private LocalDateTime createDate;
+    private LocalDateTime create_date;
 
     @OneToMany(mappedBy = "challenge", cascade = CascadeType.REMOVE)
     private List<Challenge_Tag> ownTags;

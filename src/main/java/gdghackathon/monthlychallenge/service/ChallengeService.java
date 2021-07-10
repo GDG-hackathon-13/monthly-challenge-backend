@@ -1,6 +1,5 @@
 package gdghackathon.monthlychallenge.service;
 
-import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
 import gdghackathon.monthlychallenge.entity.Challenge;
 import gdghackathon.monthlychallenge.entity.Mission;
 import gdghackathon.monthlychallenge.repository.ChallengeRepository;
