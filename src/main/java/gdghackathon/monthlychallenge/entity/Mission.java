@@ -1,6 +1,6 @@
 package gdghackathon.monthlychallenge.entity;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gdghackathon.monthlychallenge.dto.MissionResponseDto;
 import lombok.*;
 
