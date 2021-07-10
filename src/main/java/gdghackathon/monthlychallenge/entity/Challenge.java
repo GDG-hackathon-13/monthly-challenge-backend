@@ -1,5 +1,8 @@
 package gdghackathon.monthlychallenge.entity;
 
+import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -11,7 +14,9 @@ import java.util.List;
 
 @Entity
 @Getter
+@Builder
 @RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class Challenge {
     @Id
@@ -28,4 +33,15 @@ public class Challenge {
     private List<Challenge_Tag> ownTags;
     @OneToMany(mappedBy = "challenge", cascade = CascadeType.ALL)
     private List<Mission> ownMissions;
+
+    public static ChallengeResponseDto entityToDto(Challenge entity) {
+        return ChallengeResponseDto.builder()
+                .id(entity.getId())
+                .missionCount(entity.getMissionCount())
+                .name(entity.getName())
+                .createDate(entity.getCreateDate())
+                .ownMissions(entity.getOwnMissions())
+                .build();
+    }
+
 }

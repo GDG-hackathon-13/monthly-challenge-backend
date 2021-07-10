@@ -7,7 +7,9 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@Builder
 @RequiredArgsConstructor
+@AllArgsConstructor
 @NoArgsConstructor
 public class Mission {
     @Id
