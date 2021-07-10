@@ -37,9 +37,9 @@ public class Challenge {
     public static ChallengeResponseDto entityToDto(Challenge entity) {
         return ChallengeResponseDto.builder()
                 .id(entity.getId())
-                .missionCount(entity.getMissionCount())
+                .missionCount(entity.getMission_count())
                 .name(entity.getName())
-                .createDate(entity.getCreateDate())
+                .createDate(entity.getCreate_date())
                 .ownMissions(entity.getOwnMissions())
                 .build();
     }
