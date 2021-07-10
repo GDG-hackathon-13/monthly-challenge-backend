@@ -67,7 +67,8 @@ public class MainController {
 
     @GetMapping("/{challengeId}/mission")  //미션 조회
     public ResponseEntity<List<Mission>> getMissions(@PathVariable Long challengeId){
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        Challenge challenge = challengeService.getChallenge(challengeId);
+        return ResponseEntity.status(HttpStatus.OK).body(challenge.getOwnMissions());
     }
 
     @PostMapping("/{challengeId}/mission/{missionId}") //미션 인증 requestBody
