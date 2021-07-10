@@ -1,11 +1,13 @@
 package gdghackathon.monthlychallenge.service;
 
 import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
+import gdghackathon.monthlychallenge.dto.CreateChallengeDTO;
 import gdghackathon.monthlychallenge.entity.Challenge;
 import gdghackathon.monthlychallenge.entity.Mission;
 import gdghackathon.monthlychallenge.repository.ChallengeRepository;
 import gdghackathon.monthlychallenge.repository.MissionRepository;
-import javassist.NotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
