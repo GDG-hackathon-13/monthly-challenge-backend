@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MissionService {
-    @Autowired
     MissionRepository missionRepository;
+
+    MissionService(MissionRepository missionRepository){
+        this.missionRepository = missionRepository;
+    }
 }
