@@ -1,5 +1,10 @@
 ## 📎 [GDG-Hackathon(13조)](https://festa.io/events/1644)
-[Wiki](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki)
+
+### ⌨️ [Wiki]((https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki))
+- [DB 설계](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/DB-%EC%84%A4%EA%B3%84)
+- [API 설계](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/API-%EC%84%A4%EA%B3%84)
+- [프로젝트 구조](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0)
+- [UI/UX 디자인](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/UI&UX-%EB%94%94%EC%9E%90%EC%9D%B8)
 
 
 ### 🎯 기획 배경 및 목적
@@ -51,10 +56,4 @@
 - UI/UX Designer(1명)
     - [`황민하`](https://github.com/minhahwang)
 
-
-### ⌨️ Wiki
-- [DB 설계](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/DB-%EC%84%A4%EA%B3%84)
-- [API 설계](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/API-%EC%84%A4%EA%B3%84)
-- [프로젝트 구조](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B5%AC%EC%A1%B0)
-- [UI/UX 디자인](https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki/UI&UX-%EB%94%94%EC%9E%90%EC%9D%B8)
     
