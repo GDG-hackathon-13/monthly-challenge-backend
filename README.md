@@ -1,5 +1,7 @@
 ## 📎 [GDG-Hackathon(13조)](https://festa.io/events/1644)
 
+<img width="550" alt="캡쳐1" src="https://user-images.githubusercontent.com/50076031/125185672-1d86a300-e261-11eb-9b9e-157f35966616.png">
+
 https://user-images.githubusercontent.com/50076031/125184884-435d7900-e25c-11eb-95c5-09378ce28b02.mov
 
 ### ⌨️ [Wiki]((https://github.com/GDG-hackathon-13/monthly-challenge-backend/wiki))
