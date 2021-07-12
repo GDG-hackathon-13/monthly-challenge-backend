@@ -16,7 +16,6 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -94,7 +93,7 @@ public class S3Client {
     public void upload(BufferedImage image, String fileName, String contentType) {
         try {
             ByteArrayOutputStream outstream = new ByteArrayOutputStream();
-            ImageIO.write(image, "png", outstream);
+            ImageIO.write(image, getRealContentType(contentType), outstream);
             byte[] buffer = outstream.toByteArray();
             InputStream is = new ByteArrayInputStream(buffer);
 
@@ -105,6 +104,20 @@ public class S3Client {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    // contentType = "image/jpg" 에서 확장자(jpg)만 얻기
+    private String getRealContentType(String contentType) {
+        String realContentType = null;
+
+        if (contentType.contains("/")) {
+            int index = contentType.indexOf("/");
+            realContentType = contentType.substring(index + 1);
+        }
+
+        return realContentType == null
+                ? contentType
+                : realContentType;
     }
 
     // PutObjectRequest: 객체 메타 데이터 + 파일 데이터로 구성
