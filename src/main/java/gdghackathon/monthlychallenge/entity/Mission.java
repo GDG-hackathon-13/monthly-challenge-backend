@@ -32,18 +32,6 @@ public class Mission {
     @JoinColumn(name = "challenge_id")
     private Challenge challenge;
 
-    public void setMemo(String memo) {
-        this.memo = memo;
-    }
-
-    public void setImageUrl(String image) {
-        this.image = image;
-    }
-
-    public void setThumbnailImage(String thumbnail_image) {
-        this.thumbnail_image = thumbnail_image;
-    }
-
     public static MissionResponseDto entityToDto(Mission entity) {
         return MissionResponseDto.builder()
                 .id(entity.getId())
