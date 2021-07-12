@@ -35,6 +35,7 @@ public class Mission {
     public Mission(Boolean mission_check, String name, String memo, String image, String thumbnail_image, Challenge challenge) {
         this.mission_check = mission_check;
         this.name = name;
+        this.memo = memo;
         this.image = image;
         this.thumbnail_image = thumbnail_image;
         this.challenge = challenge;
