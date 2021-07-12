@@ -78,8 +78,8 @@ public class MissionService {
             BufferedImage bufferedImage = Thumbnails.of(new URL(imagePath)).scale(0.4).asBufferedImage();
             s3Client.upload(bufferedImage, thumbnailKey, file.getContentType());
 
-            mission.setImageUrl(imagePath);
-            mission.setThumbnailImage(thumbnailPath);
+            mission.setImage(imagePath);
+            mission.setThumbnail_image(thumbnailPath);
         }
 
         missionRepository.save(mission);

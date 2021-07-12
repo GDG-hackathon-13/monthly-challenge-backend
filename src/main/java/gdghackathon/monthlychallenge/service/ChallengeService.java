@@ -2,6 +2,7 @@ package gdghackathon.monthlychallenge.service;
 
 import gdghackathon.monthlychallenge.dto.ChallengeResponseDto;
 import gdghackathon.monthlychallenge.dto.CreateChallengeDTO;
+import gdghackathon.monthlychallenge.dto.CreateChallengeMissionDTO;
 import gdghackathon.monthlychallenge.entity.Challenge;
 import gdghackathon.monthlychallenge.entity.Mission;
 import gdghackathon.monthlychallenge.repository.ChallengeRepository;
@@ -29,14 +30,29 @@ public class ChallengeService {
 
     public Long createChallenge(CreateChallengeDTO dto){
         Challenge challenge = new Challenge(0, dto.getName(), LocalDateTime.now());
-        List<Mission> missions = dto.getMission();
+        List<CreateChallengeMissionDTO> missions = dto.getMission();
         if (missions.size()!=30)
             throw new IllegalArgumentException("size of mission array is not 30.");
         else {
             challengeRepository.save(challenge);
-            for (Mission m : missions) {
-                m.setChallenge(challenge);
-                missionRepository.save(m);
+            for (CreateChallengeMissionDTO m : missions) {
+                Boolean check = m.getMission_check();
+                String image = m.getImage();
+                String thumbnail = m.getThumbnail_image();
+                System.out.println(m.getName()+"\n"+m.getMission_check()+"\n"+m.getMissionCheck()+"\n");
+                if (check==null) {
+                    check = m.getMissionCheck();
+                }
+                if (image==null) {
+                    image = m.getImageUrl();
+                }
+                if (thumbnail==null) {
+                    thumbnail = m.getThumbnailImageUrl();
+                }
+                if (check==null||m.getName()==null)
+                    throw new IllegalArgumentException("mission_check or name of  Mission is null.");
+                Mission mission = new Mission(check,m.getName(),m.getMemo(),image,thumbnail, challenge);
+                missionRepository.save(mission);
             }
             return challenge.getId();
         }

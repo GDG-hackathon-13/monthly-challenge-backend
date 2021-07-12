@@ -15,6 +15,6 @@ import java.util.List;
 public class CreateChallengeDTO {
     @NonNull
     private String name;
-    private List<Mission> mission;
+    private List<CreateChallengeMissionDTO> mission;
     private List<Tag> tag;
 }

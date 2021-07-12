@@ -32,6 +32,14 @@ public class Mission {
     @JoinColumn(name = "challenge_id")
     private Challenge challenge;
 
+    public Mission(Boolean mission_check, String name, String memo, String image, String thumbnail_image, Challenge challenge) {
+        this.mission_check = mission_check;
+        this.name = name;
+        this.image = image;
+        this.thumbnail_image = thumbnail_image;
+        this.challenge = challenge;
+    }
+
     public static MissionResponseDto entityToDto(Mission entity) {
         return MissionResponseDto.builder()
                 .id(entity.getId())
