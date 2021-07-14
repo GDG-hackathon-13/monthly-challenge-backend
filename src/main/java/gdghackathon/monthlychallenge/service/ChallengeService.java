@@ -16,22 +16,23 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class ChallengeService {
     private final ChallengeRepository challengeRepository;
     private final MissionRepository missionRepository;
 
     @Autowired
-    public ChallengeService(ChallengeRepository challengeRepository, MissionRepository missionRepository){
+    public ChallengeService(ChallengeRepository challengeRepository, MissionRepository missionRepository) {
         this.challengeRepository = challengeRepository;
         this.missionRepository = missionRepository;
     }
 
 
-    public Long createChallenge(CreateChallengeDTO dto){
+    public Long createChallenge(CreateChallengeDTO dto) {
         Challenge challenge = new Challenge(0, dto.getName(), LocalDateTime.now());
         List<CreateChallengeMissionDTO> missions = dto.getMission();
-        if (missions.size()!=30)
+        if (missions.size() != 30)
             throw new IllegalArgumentException("size of mission array is not 30.");
         else {
             challengeRepository.save(challenge);
@@ -39,26 +40,26 @@ public class ChallengeService {
                 Boolean check = m.getMission_check();
                 String image = m.getImage();
                 String thumbnail = m.getThumbnail_image();
-                System.out.println(m.getName()+"\n"+m.getMission_check()+"\n"+m.getMissionCheck()+"\n");
-                if (check==null) {
+                System.out.println(m.getName() + "\n" + m.getMission_check() + "\n" + m.getMissionCheck() + "\n");
+                if (check == null) {
                     check = m.getMissionCheck();
                 }
-                if (image==null) {
+                if (image == null) {
                     image = m.getImageUrl();
                 }
-                if (thumbnail==null) {
+                if (thumbnail == null) {
                     thumbnail = m.getThumbnailImageUrl();
                 }
-                if (check==null||m.getName()==null)
+                if (check == null || m.getName() == null)
                     throw new IllegalArgumentException("mission_check or name of  Mission is null.");
-                Mission mission = new Mission(check,m.getName(),m.getMemo(),image,thumbnail, challenge);
+                Mission mission = new Mission(check, m.getName(), m.getMemo(), image, thumbnail, challenge);
                 missionRepository.save(mission);
             }
             return challenge.getId();
         }
     }
 
-    public void deleteChallenge(Long id){
+    public void deleteChallenge(Long id) {
         Optional<Challenge> challengeToDelete = challengeRepository.findById(id);
         if (challengeToDelete.isEmpty())
             throw new EntityNotFoundException("not found challenge to delete. check id of challenge.");
@@ -66,7 +67,7 @@ public class ChallengeService {
             challengeRepository.delete(challengeToDelete.get());
     }
 
-    public Challenge getChallenge(Long id){
+    public Challenge getChallenge(Long id) {
         Optional<Challenge> challengeToGet = challengeRepository.findById(id);
         if (challengeToGet.isEmpty())
             throw new EntityNotFoundException("not found challenge to get. check id of challenge.");
@@ -74,10 +75,10 @@ public class ChallengeService {
             return challengeToGet.get();
     }
 
-    public List<Challenge> getChallenges(){
+    public List<Challenge> getChallenges() {
         return challengeRepository.findAll();
     }
-  
+
     public List<ChallengeResponseDto> getSampleChallenges() {
         final List<Challenge> challengeList = challengeRepository.findTop8ByOrderByIdAsc();
         return challengeList.stream()
