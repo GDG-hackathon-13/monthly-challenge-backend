@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -71,11 +70,10 @@ public class MainController {
     @PostMapping(path = "/{challengeId}/mission/{missionId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> completeMission(
             @ModelAttribute CreateMissionDTO createMissionDTO,
-            @RequestPart("file") MultipartFile multipartFile,
             @PathVariable Long challengeId,
             @PathVariable Long missionId) {
         try {
-            missionService.completeMission(createMissionDTO, multipartFile, challengeId, missionId);
+            missionService.completeMission(createMissionDTO, challengeId, missionId);
         } catch (IOException e) {
             e.printStackTrace();
         }

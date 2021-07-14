@@ -10,7 +10,6 @@ import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -37,7 +36,6 @@ public class MissionService {
     }
 
     public void completeMission(CreateMissionDTO createMissionDTO,
-                                MultipartFile multipartFile,
                                 Long challengeId,
                                 Long missionId) throws IOException {
         Assert.notNull(challengeId, "challengeId must not be null");
@@ -51,7 +49,7 @@ public class MissionService {
 
         String imagePath = null;
         String thumbnailPath = null;
-        AttachedFile file = AttachedFile.of(multipartFile);
+        AttachedFile file = AttachedFile.of(createMissionDTO.getFile());
 
         if (createMissionDTO.getMemo() == null && file == null) {
             return;

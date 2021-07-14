@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -11,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateMissionDTO {
 
+    private MultipartFile file;
     private String memo;
 
 }
