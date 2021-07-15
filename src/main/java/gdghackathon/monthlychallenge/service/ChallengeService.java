@@ -8,8 +8,9 @@ import gdghackathon.monthlychallenge.entity.Mission;
 import gdghackathon.monthlychallenge.repository.ChallengeRepository;
 import gdghackathon.monthlychallenge.repository.MissionRepository;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
@@ -18,17 +19,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ChallengeService {
+
     private final ChallengeRepository challengeRepository;
     private final MissionRepository missionRepository;
 
-    @Autowired
-    public ChallengeService(ChallengeRepository challengeRepository, MissionRepository missionRepository) {
-        this.challengeRepository = challengeRepository;
-        this.missionRepository = missionRepository;
-    }
-
-
+    @Transactional
     public Long createChallenge(CreateChallengeDTO dto) {
         Challenge challenge = new Challenge(0, dto.getName(), LocalDateTime.now());
         List<CreateChallengeMissionDTO> missions = dto.getMission();
@@ -59,6 +56,7 @@ public class ChallengeService {
         }
     }
 
+    @Transactional
     public void deleteChallenge(Long id) {
         Optional<Challenge> challengeToDelete = challengeRepository.findById(id);
         if (challengeToDelete.isEmpty())
@@ -67,6 +65,7 @@ public class ChallengeService {
             challengeRepository.delete(challengeToDelete.get());
     }
 
+    @Transactional(readOnly = true)
     public Challenge getChallenge(Long id) {
         Optional<Challenge> challengeToGet = challengeRepository.findById(id);
         if (challengeToGet.isEmpty())
@@ -75,10 +74,12 @@ public class ChallengeService {
             return challengeToGet.get();
     }
 
+    @Transactional(readOnly = true)
     public List<Challenge> getChallenges() {
         return challengeRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public List<ChallengeResponseDto> getSampleChallenges() {
         final List<Challenge> challengeList = challengeRepository.findTop8ByOrderByIdAsc();
         return challengeList.stream()
