@@ -42,6 +42,10 @@ public class Challenge {
     @OneToMany(mappedBy = "challenge", cascade = CascadeType.ALL)
     private List<Mission> ownMissions;
 
+    public void increaseMissionCount() {
+        ++this.mission_count;
+    }
+
     public static ChallengeResponseDto entityToDto(Challenge entity) {
         return ChallengeResponseDto.builder()
                 .id(entity.getId())
