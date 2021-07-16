@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Builder
@@ -19,5 +21,6 @@ public class MissionResponseDto {
     private String memo;
     private String image;
     private String thumbnail_image;
+    private LocalDateTime create_date;
 
 }
