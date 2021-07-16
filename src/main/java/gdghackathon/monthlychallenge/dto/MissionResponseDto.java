@@ -21,6 +21,6 @@ public class MissionResponseDto {
     private String memo;
     private String image;
     private String thumbnail_image;
-    private LocalDateTime create_date;
+    private LocalDateTime certification_date;
 
 }

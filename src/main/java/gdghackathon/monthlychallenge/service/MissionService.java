@@ -19,6 +19,7 @@ import javax.persistence.EntityNotFoundException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,6 +87,8 @@ public class MissionService {
             mission.setImage(imagePath);
             mission.setThumbnail_image(thumbnailPath);
         }
+
+        mission.setCertification_date(LocalDateTime.now()); // 미션 인증한 시각 저장
         missionRepository.save(mission);
     }
 

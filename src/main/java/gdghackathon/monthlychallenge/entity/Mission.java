@@ -29,7 +29,7 @@ public class Mission {
     private String memo;
     private String image;
     private String thumbnail_image;
-    private LocalDateTime create_date;
+    private LocalDateTime certification_date;
 
     @JsonIgnore
     @ManyToOne
@@ -41,14 +41,14 @@ public class Mission {
     }
 
     public Mission(Boolean mission_check, String name, String memo, String image, String thumbnail_image,
-                   Challenge challenge, LocalDateTime create_date) {
+                   Challenge challenge, LocalDateTime certification_date) {
         this.mission_check = mission_check;
         this.name = name;
         this.memo = memo;
         this.image = image;
         this.thumbnail_image = thumbnail_image;
         this.challenge = challenge;
-        this.create_date = defaultIfNull(create_date, LocalDateTime.now());
+        this.certification_date = certification_date;
     }
 
     public static MissionResponseDto entityToDto(Mission entity) {
@@ -59,6 +59,7 @@ public class Mission {
                 .memo(entity.getMemo())
                 .image(entity.getImage())
                 .thumbnail_image(entity.getThumbnail_image())
+                .certification_date(entity.getCertification_date())
                 .build();
     }
 

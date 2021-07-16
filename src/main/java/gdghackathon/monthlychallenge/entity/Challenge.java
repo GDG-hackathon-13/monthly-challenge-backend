@@ -15,6 +15,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
+
 @Entity
 @Getter
 @Builder
@@ -51,7 +53,7 @@ public class Challenge {
                 .id(entity.getId())
                 .missionCount(entity.getMission_count())
                 .name(entity.getName())
-                .createDate(entity.getCreate_date())
+                .createDate(defaultIfNull(entity.getCreate_date(), LocalDateTime.now()))
                 .ownMissions(entity.getOwnMissions())
                 .build();
     }
