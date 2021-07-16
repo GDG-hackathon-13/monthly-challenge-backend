@@ -76,16 +76,17 @@ public class MissionService {
             // 이미지 경로(https://bucket/GDG13 ... )
             imagePath = s3Client.upload(file.inputStream(), file.length(), key, file.getContentType(), null);
             // 썸네일 이미지 경로(https://bucket/thumbnail_ ... )
-            thumbnailPath = s3Client.upload(file.inputStream(), file.length(), thumbnailKey, file.getContentType(), null);
+            //thumbnailPath = s3Client.upload(file.inputStream(), file.length(), thumbnailKey, file.getContentType(), null);
 
             log.info("contentType: " + file.getContentType());
             log.info("imagePath: " + imagePath);
-            log.info("thumbnailPath: " + thumbnailPath);
 
             BufferedImage bufferedImage = Thumbnails.of(new URL(imagePath)).scale(0.4).asBufferedImage(); // 썸네일 이미지 생성
-            s3Client.upload(bufferedImage, thumbnailKey, file.getContentType()); // AWS S3 Upload
+            String thumbnailPath2 = s3Client.upload(bufferedImage, thumbnailKey, file.getContentType()); // AWS S3 Upload
+            log.info("thumbnailKey: " + thumbnailKey);
+            log.info("thumbnailPath2: " + thumbnailPath2);
             mission.setImage(imagePath);
-            mission.setThumbnail_image(thumbnailPath);
+            mission.setThumbnail_image(thumbnailPath2);
         }
 
         mission.setCertification_date(LocalDateTime.now()); // 미션 인증한 시각 저장
