@@ -1,6 +1,6 @@
 ## 📎 [GDG-Hackathon(13조)](https://festa.io/events/1644)
 
-<img width="550" alt="캡쳐1" src="https://user-images.githubusercontent.com/50076031/125185672-1d86a300-e261-11eb-9b9e-157f35966616.png">
+<img width="520" alt="스크린샷" src="https://user-images.githubusercontent.com/50076031/126170450-00995d8e-b1eb-436e-baf9-787164855466.png">
 
 https://user-images.githubusercontent.com/50076031/125184884-435d7900-e25c-11eb-95c5-09378ce28b02.mov
 
