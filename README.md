@@ -1,6 +1,6 @@
 ## 📎 [GDG-Hackathon(13조)](https://festa.io/events/1644)
 
-## [`Youtube`](https://www.youtube.com/watch?v=po18XikvNWY&list=PLgCaMe2Q0yhJ7P10MkWR-wAKfJ7CmuzRH&index=4)
+## [`Youtube 발표 영상`](https://www.youtube.com/watch?v=po18XikvNWY&list=PLgCaMe2Q0yhJ7P10MkWR-wAKfJ7CmuzRH&index=4)
 
 <img width="520" alt="스크린샷" src="https://user-images.githubusercontent.com/50076031/126170450-00995d8e-b1eb-436e-baf9-787164855466.png">
 
